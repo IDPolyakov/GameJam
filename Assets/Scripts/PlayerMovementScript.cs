@@ -28,7 +28,7 @@ public class PlayerMovementScript : MonoBehaviour
     void Update()
     {
         Vector2 inputVector = move.action.ReadValue<Vector2>();
-        Vector3 moveVector = new Vector3(inputVector.x, 0f, inputVector.y);
+        Vector3 moveVector = new Vector3(-inputVector.x, 0f, inputVector.y);
         float moveDistance = Time.deltaTime * moveSpeed;
         
         if (!Physics.Raycast(transform.position, moveVector, moveDistance + GetComponent<Renderer>().bounds.size.x / 2))

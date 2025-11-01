@@ -32,9 +32,9 @@ public class GoalKeeper : MonoBehaviour
 
         
         float sineX = Mathf.Sin((Time.time + randomOffset) * movementSpeed) * movementRange;
-        float sineY = Mathf.Sin((Time.time + randomOffset) * movementSpeed * 1.5f) * movementHeight;
+        float sineZ = Mathf.Sin((Time.time + randomOffset) * movementSpeed * 1.5f) * movementHeight;
 
-        Vector3 localMovement = new Vector3(sineX, sineY, 0);
+        Vector3 localMovement = new Vector3(sineX * 1.5f, 0, Mathf.Abs(sineZ * 6.0f));
 
         Vector3 worldMovement = gate.TransformDirection(localMovement);
 
@@ -43,6 +43,5 @@ public class GoalKeeper : MonoBehaviour
 
         transform.position = targetPosition;
 
-        transform.rotation = gate.rotation;
     }
 }
