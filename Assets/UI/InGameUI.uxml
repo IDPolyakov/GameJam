@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Label text="Очки: 0" name="Score" style="font-size: 26px;" />
+    <ui:Label text="Game Over" enabled="true" tabindex="-1" focusable="false" name="GameOver" style="-unity-text-align: middle-center; text-overflow: clip; white-space: nowrap; height: 646px; font-size: 48px; background-color: rgba(0, 0, 0, 0.25); border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); position: absolute; width: 1074px; top: -8px; left: -11px;" />
+    <ui:Label text="3" enabled="true" tabindex="-1" focusable="false" name="BeforeStartCounter" selectable="false" style="-unity-text-align: middle-center; text-overflow: clip; white-space: nowrap; height: 646px; font-size: 48px; background-color: rgba(0, 0, 0, 0.28); border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); position: absolute; width: 1074px; top: -8px; left: -11px;" />
+</ui:UXML>

@@ -145,7 +145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f481e6ebee875f445b44af8f641c1ff0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.204509
+      value: -8.962338
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f481e6ebee875f445b44af8f641c1ff0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -178,7 +178,7 @@ PrefabInstance:
     - target: {fileID: -5754084199372789682, guid: f481e6ebee875f445b44af8f641c1ff0, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -1550514412580984892, guid: 928687e78a655584fa3bc7d6442153fd, type: 3}
+      objectReference: {fileID: -5495902117074765545, guid: f481e6ebee875f445b44af8f641c1ff0, type: 3}
     - target: {fileID: 919132149155446097, guid: f481e6ebee875f445b44af8f641c1ff0, type: 3}
       propertyPath: m_Name
       value: Gates_Basic_3D
@@ -585,6 +585,8 @@ GameObject:
   m_Component:
   - component: {fileID: 832575519}
   - component: {fileID: 832575518}
+  - component: {fileID: 832575521}
+  - component: {fileID: 832575520}
   m_Layer: 0
   m_Name: Global Volume
   m_TagString: Untagged
@@ -624,6 +626,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &832575520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832575517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe3005296c26f0418794a58abb7943c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIManager
+  uiAsset: {fileID: 9197481963319205126, guid: 486115e5f4be87d4faad2412f2dcfc61, type: 3}
+--- !u!114 &832575521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832575517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: 93fcc76c514c8234c9e4e833fb8bd36e, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 486115e5f4be87d4faad2412f2dcfc61, type: 3}
+  m_SortingOrder: 0
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
 --- !u!1001 &1099979458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -858,6 +896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   impulseForce: 6.33
+  linkToUIManager: {fileID: 832575520}
 --- !u!114 &1281867587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -870,6 +909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a2e5d4bcb865a4fa18eba5e525dbb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  angleGateQuantity: 2
   StrikeForce: 30
 --- !u!1 &1282526309
 GameObject:
@@ -1327,7 +1367,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.0732, y: 0.023240734, z: 0.024399957}
-  m_Center: {x: 0.00015283376, y: -0.010556383, z: 0.012199978}
+  m_Center: {x: 0.00015283376, y: 0.01, z: 0.012199978}
 --- !u!114 &1991421623
 MonoBehaviour:
   m_ObjectHideFlags: 0

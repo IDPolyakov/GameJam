@@ -5,6 +5,8 @@ public class ImpulseController : MonoBehaviour
 {
     [SerializeField] public float impulseForce = 1f;
 
+    [SerializeField] public UIManager linkToUIManager;
+
     private Rigidbody rb;
 
     private void Start()
@@ -12,8 +14,16 @@ public class ImpulseController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    private bool gameOverActivated = false;
     private void Update()
     {
+
+        if (!gameOverActivated && transform.position.z < 0)
+        {
+            gameOverActivated = true;
+            linkToUIManager.ShowGameOver();
+        }
+
         Vector2 inputVector = new Vector2(0, 0);
         if (Input.GetKey(KeyCode.UpArrow))
         {
