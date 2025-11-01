@@ -24,27 +24,24 @@ public class PlayerMovementScript : MonoBehaviour
         RigidbodyConstraints positionLock = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
         rb.constraints = rotationLock | positionLock;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         Vector2 inputVector = move.action.ReadValue<Vector2>();
         Vector3 moveVector = new Vector3(inputVector.x, 0f, inputVector.y);
         float moveDistance = Time.deltaTime * moveSpeed;
-        transform.position += moveVector.normalized * moveDistance;
-
-        float jumpPressed = jump.action.ReadValue<float>();
+        
+        if (!Physics.Raycast(transform.position, moveVector, moveDistance + GetComponent<Renderer>().bounds.size.x / 2))
+        {
+            transform.position += moveVector.normalized * moveDistance;
+        }
+        
     }
 
     private void OnEnable()
     {
         jump.action.Enable();
     }
-
-    //private void OnDisable()
-    //{
-    //    jump.action.started -= Jump;
-    //}
 
     void FixedUpdate()
     {
