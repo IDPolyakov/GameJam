@@ -34,9 +34,15 @@ public class UIManager : MonoBehaviour
         scoreLabel.text = $"Счёт: {currentScore}";
     }
 
+    public void ResetScore()
+    {
+        currentScore = 0;
+        UpdateScore(0);
+    }
+
     public void ShowGameOver(string finalMessage = "Вы проиграли!")
     {
-
+        ResetScore(); // Сбрасываем счет
         gameOverText.text = finalMessage;
         gameOverText.style.display = DisplayStyle.Flex;
 

@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ImpulseController : MonoBehaviour
 {
@@ -29,12 +30,12 @@ public class ImpulseController : MonoBehaviour
 
     private void Update()
     {
-        
         if (!isRestarting && transform.position.z < -10)
         {
-            ShowGameOver();
-            //StartCoroutine(DelayedRestart(1.0f));
+            linkToUIManager.ShowGameOver();
+            StartCoroutine(DelayedRestart(3.0f));  // ÏÅÐÅÐÇÀÏÓÑÊ
         }
+
 
         arrowMovement();
         checkForForwardMovement();
@@ -53,6 +54,7 @@ public class ImpulseController : MonoBehaviour
             // Ðåñòàðò
             if (!isRestarting)
             {
+                isRestarting = true;
                 StartCoroutine(DelayedRestart(1.0f));
             }
         }
@@ -73,7 +75,7 @@ public class ImpulseController : MonoBehaviour
 
         if (backwardTimer >= BackwardDuration)
         {
-            ShowGameOver();
+            linkToUIManager.ShowGameOver();
         }
     }
 
@@ -94,11 +96,6 @@ public class ImpulseController : MonoBehaviour
         isRestarting = false;
         linkToUIManager.StartCountdown();
         StartCoroutine(launcher.DelayedLaunch());
-    }
-
-    public void ShowGameOver()
-    {
-        linkToUIManager.ShowGameOver();
     }
 
     private void arrowMovement()

@@ -18,8 +18,7 @@ public class GoalKeeper : MonoBehaviour
         randomOffset = Random.Range(0f, 2f * Mathf.PI);
 
         RigidbodyConstraints rotationLock = RigidbodyConstraints.FreezeRotation;
-        //RigidbodyConstraints positionLock = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-        GetComponent<Rigidbody>().constraints = rotationLock;// | positionLock;
+        GetComponent<Rigidbody>().constraints = rotationLock;
     }
 
     void Update()
