@@ -41,7 +41,7 @@ public class ImpulseController : MonoBehaviour
             }
 
             linkToUIManager.ShowGameOver();
-
+            isRestarting = true;
             StartCoroutine(DelayedRestart(3.0f));  // œ≈–≈–«¿œ”— 
         }
 
