@@ -183,8 +183,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306265686}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000001945932, y: 0.9965927, z: -0.082480505, w: -0.0000000036419383}
-  m_LocalPosition: {x: 0.08, y: 6.4, z: 117.65}
+  m_LocalRotation: {x: 1.5727722e-10, y: 0.9961374, z: -0.08780917, w: 0.0000000017842074}
+  m_LocalPosition: {x: 0.08, y: 2.6100001, z: 94.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -278,8 +278,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -3.1691555e-10, y: 0.9965927, z: -0.0824805, w: -0.000000003829217}
-  m_LocalPosition: {x: 0.08, y: 6.4, z: 117.65}
+  m_LocalRotation: {x: 1.5727723e-10, y: 0.9961373, z: -0.08780915, w: 0.0000000017842071}
+  m_LocalPosition: {x: 0.08, y: 2.6100001, z: 94.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -876,7 +876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a2e5d4bcb865a4fa18eba5e525dbb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  angleGateQuantity: 5
+  angleGateQuantity: 15
   StrikeForce: 30
 --- !u!1 &1282526309
 GameObject:
@@ -928,8 +928,8 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0.5
-  m_VerticalDamping: 0.5
+  m_HorizontalDamping: 0
+  m_VerticalDamping: 0
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_DeadZoneWidth: 0
@@ -964,7 +964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Cinemachine::Cinemachine.CinemachineTransposer
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 5, z: 30}
+  m_FollowOffset: {x: 0, y: 1.21, z: 6.81}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
