@@ -39,7 +39,8 @@ public class GoalKeeper : MonoBehaviour
         
         Vector3 basePosition = gate.position + gate.TransformDirection(offsetFromGate);
 
-
+        // Бага: если есть скорость 11, наш текущий аргумент синуса будет x, если игрок в это же время или через 0.001 секунды попадает в ворота, скорость увеличивается, но
+        // аргумент изменяется не на 0.001 как должно быть, а на x + a, где a - какое-то большое число. Это из-за того, что скорость есть коэффициент.
         float sineX = Mathf.Sin((Time.time + randomOffset) * currentSpeed) * movementRange;
         float sineZ = Mathf.Sin((Time.time + randomOffset) * currentSpeed * 1.5f) * movementHeight;
 

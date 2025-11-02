@@ -7,7 +7,8 @@ public class BallLaunch : MonoBehaviour
     [SerializeField]
     private float angleGateQuantity = 2;
     [SerializeField]
-    private float StrikeForce = 15.0f;
+    private float StrikeForceHorizontal = 15.0f;
+    private float StrikeForceVertical = 0.2f;
 
 
     static float maxAnglePerGate = 2.24f;
@@ -22,8 +23,8 @@ public class BallLaunch : MonoBehaviour
         float MaxAngle = maxAnglePerGate * angleGateQuantity;
         float CurAngle = Random.value * 2 * MaxAngle - MaxAngle;
         Vector3 forwardVector = Vector3.forward;
-        Vector3 rightTurnedVector = RotateVector(forwardVector, CurAngle + 180);
-        rb.AddForce(rightTurnedVector * StrikeForce, ForceMode.Impulse);
+        Vector3 rightTurnedVector = RotateVector(forwardVector, CurAngle + 180) + new Vector3(0,1, 0)* StrikeForceVertical;
+        rb.AddForce(rightTurnedVector * StrikeForceHorizontal, ForceMode.Impulse);
     }
 
     public IEnumerator DelayedLaunch(float delayTime = 3.0f)

@@ -90,6 +90,7 @@ public class ImpulseController : MonoBehaviour
         if (backwardTimer >= BackwardDuration)
         {
             linkToUIManager.ShowGameOver();
+            StartCoroutine(DelayedRestart(3.0f));
         }
     }
 
