@@ -1,29 +1,90 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using System.Collections;
 
 public class ImpulseController : MonoBehaviour
 {
-    [SerializeField] public float impulseForce = 1f;
 
-    [SerializeField] public UIManager linkToUIManager;
+    [Header("Impulse")]
+    [SerializeField] private float impulseForce = 1f;
+
+    [Header("UI")]
+    [SerializeField] private UIManager linkToUIManager;
+
+    [Header("Stop checker")]
+    [SerializeField] private float VelocityStopThreshold = 0.05f; // Amount of speed, below which real speed is considered zero or negative
+    [SerializeField] private float BackwardDuration = 3.0f; // Time of necessary backwards movement
+
+    private float backwardTimer = 0f;
 
     private Rigidbody rb;
+    private BallLaunch launcher;
+    private Vector3 initialCords;
 
     private void Start()
     {
+        initialCords = transform.position;
         rb = GetComponent<Rigidbody>();
+        launcher = GetComponent<BallLaunch>();
     }
 
-    private bool gameOverActivated = false;
     private void Update()
     {
-
-        if (!gameOverActivated && transform.position.z < 0)
+        
+        if (!isRestarting && transform.position.z < 0)
         {
-            gameOverActivated = true;
-            linkToUIManager.ShowGameOver();
+            isRestarting = true;
+            StartCoroutine(DelayedRestart(1.0f));
         }
 
+        arrowMovement();
+        checkForForwardMovement();
+    }
+
+    private void checkForForwardMovement()
+    {
+        float currentZVelocity = rb.linearVelocity.z;
+        if (currentZVelocity > VelocityStopThreshold)
+        {
+            backwardTimer += Time.deltaTime;
+        }
+        else
+        {
+            backwardTimer = 0f;
+        }
+
+        if (backwardTimer >= BackwardDuration)
+        {
+            ShowGameOver();
+        }
+    }
+
+    private void restorePosition()
+    {
+        transform.position = initialCords;
+        transform.rotation = new Quaternion();
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
+
+    private bool isRestarting = false;
+    public IEnumerator DelayedRestart(float delayTime)
+    {
+        isRestarting = true;
+        yield return new WaitForSeconds(delayTime);
+        restorePosition();
+        isRestarting = false;
+        linkToUIManager.UpdateScore();
+        linkToUIManager.StartCountdown();
+        StartCoroutine(launcher.DelayedLaunch());
+    }
+
+    public void ShowGameOver()
+    {
+        linkToUIManager.ShowGameOver();
+    }
+
+    private void arrowMovement()
+    {
         Vector2 inputVector = new Vector2(0, 0);
         if (Input.GetKey(KeyCode.UpArrow))
         {
@@ -47,7 +108,8 @@ public class ImpulseController : MonoBehaviour
 
         float moveDistance = Time.deltaTime * impulseForce;
 
-        if (moveVector.x != 0 || moveVector.z != 0) {
+        if (moveVector.x != 0 || moveVector.z != 0)
+        {
             rb.AddForce(moveVector * moveDistance, ForceMode.Impulse);
         }
     }
