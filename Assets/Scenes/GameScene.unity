@@ -861,6 +861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   impulseForce: 8
   linkToUIManager: {fileID: 832575520}
+  goalKeeper: {fileID: 1809975459}
   VelocityStopThreshold: 0.05
   BackwardDuration: 3
 --- !u!114 &1281867587
@@ -1008,6 +1009,8 @@ MonoBehaviour:
   movementHeight: 0.5
   gate: {fileID: 1991421620}
   offsetFromGate: {x: 0, y: -4, z: 1}
+  speedIncreasePerGoal: 0.5
+  maxSpeed: 8
 --- !u!54 &1809975460
 Rigidbody:
   m_ObjectHideFlags: 0

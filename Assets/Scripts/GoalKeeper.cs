@@ -28,7 +28,7 @@ public class GoalKeeper : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log($"Скорость вратаря: {currentSpeed}");
+        Debug.Log($"Скорость вратаря: {currentSpeed}");
         FollowGateAndMoveSine();
     }
 
