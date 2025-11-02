@@ -11,6 +11,9 @@ public class ImpulseController : MonoBehaviour
     [Header("UI")]
     [SerializeField] private UIManager linkToUIManager;
 
+    [Header("GoalKeeper")]
+    [SerializeField] private GoalKeeper goalKeeper;
+
     [Header("Stop checker")]
     [SerializeField] private float VelocityStopThreshold = 0.05f; // Amount of speed, below which real speed is considered zero or negative
     [SerializeField] private float BackwardDuration = 3.0f; // Time of necessary backwards movement
@@ -30,9 +33,15 @@ public class ImpulseController : MonoBehaviour
 
     private void Update()
     {
-        if (!isRestarting && transform.position.z < -10)
+        if ((!isRestarting && transform.position.z < -10) || (!isRestarting && transform.position.z > 90) )
         {
+            if (goalKeeper != null)
+            {
+                goalKeeper.ResetSpeed();
+            }
+
             linkToUIManager.ShowGameOver();
+
             StartCoroutine(DelayedRestart(3.0f));  // ПЕРЕРЗАПУСК
         }
 
@@ -49,7 +58,12 @@ public class ImpulseController : MonoBehaviour
         {
             
             // Добавляем очко
-            linkToUIManager.UpdateScore(); 
+            linkToUIManager.UpdateScore();
+
+            if (goalKeeper != null)
+            {
+                goalKeeper.IncreaseSpeed();
+            }
 
             // Рестарт
             if (!isRestarting)
