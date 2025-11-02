@@ -77,9 +77,6 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         countdownTimerLabel.style.display = DisplayStyle.None;
-
-        // Here we can start the game
-        Debug.Log("Игра началась!");
     }
 
     void Update()
