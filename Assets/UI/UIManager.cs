@@ -27,9 +27,10 @@ public class UIManager : MonoBehaviour
         StartCountdown();
     }
 
-    public void UpdateScore(int newScore)
+    public void UpdateScore(int newScore = -1)
     {
-        currentScore = newScore;
+        if (newScore == -1) currentScore += 1;
+        else currentScore = newScore;
         scoreLabel.text = $"Ñ÷¸ò: {currentScore}";
     }
 
