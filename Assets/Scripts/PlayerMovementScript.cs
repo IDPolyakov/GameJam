@@ -53,7 +53,6 @@ public class PlayerMovementScript : MonoBehaviour
         if (jump.action.IsPressed() && transform.position.y < 0.1)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            Debug.Log("jumping!");
         }
     }
 }
