@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerMovementScript : MonoBehaviour
 {
@@ -16,10 +17,12 @@ public class PlayerMovementScript : MonoBehaviour
     private float jumpForce = 1.0f;
 
     private Rigidbody rb;
+    private Renderer rendererLink;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rendererLink = GetComponent<Renderer>();
         RigidbodyConstraints rotationLock = RigidbodyConstraints.FreezeRotation;
         RigidbodyConstraints positionLock = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
         rb.constraints = rotationLock | positionLock;
@@ -30,12 +33,14 @@ public class PlayerMovementScript : MonoBehaviour
         Vector2 inputVector = move.action.ReadValue<Vector2>();
         Vector3 moveVector = new Vector3(-inputVector.x, 0f, inputVector.y);
         float moveDistance = Time.deltaTime * moveSpeed;
-        
-        if (!Physics.Raycast(transform.position, moveVector, moveDistance + GetComponent<Renderer>().bounds.size.x / 2))
+        RaycastHit hit;
+        float rayDistance = moveDistance + rendererLink.bounds.size.x / 2;
+        bool hitSomething = Physics.Raycast(transform.position, moveVector.normalized, out hit, rayDistance);
+
+        if (!hitSomething || hit.collider.gameObject == this.gameObject)
         {
             transform.position += moveVector.normalized * moveDistance;
-        }
-        
+        }        
     }
 
     private void OnEnable()
