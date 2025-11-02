@@ -30,15 +30,37 @@ public class ImpulseController : MonoBehaviour
     private void Update()
     {
         
-        if (!isRestarting && transform.position.z < 0)
+        if (!isRestarting && transform.position.z < -10) // áûëî < 0 
         {
+            Debug.Log("Ìèìî!");
             isRestarting = true;
-            StartCoroutine(DelayedRestart(1.0f));
+            StartCoroutine(DelayedRestart(1.0f));  // ÏÅÐÅÐÇÀÏÓÑÊ
         }
 
         arrowMovement();
         checkForForwardMovement();
     }
+
+
+    // Òððèããåð â âîðîòàõ
+    private void OnTriggerEnter(Collider other)
+    {
+        
+        if (other.CompareTag("Goal"))
+        {
+            Debug.Log("ÃÎË! +1 î÷êî");
+
+            linkToUIManager.UpdateScore(); // Äîáàâëÿåì î÷êî
+
+            // Ðåñòàðò
+            if (!isRestarting)
+            {
+                isRestarting = true;
+                StartCoroutine(DelayedRestart(1.0f));
+            }
+        }
+    }
+
 
     private void checkForForwardMovement()
     {
@@ -73,7 +95,7 @@ public class ImpulseController : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
         restorePosition();
         isRestarting = false;
-        linkToUIManager.UpdateScore();
+        //linkToUIManager.UpdateScore(); // ÄÎÁÀÂËÅÍÈÅ Î×ÊÀ (áûëî)
         linkToUIManager.StartCountdown();
         StartCoroutine(launcher.DelayedLaunch());
     }
