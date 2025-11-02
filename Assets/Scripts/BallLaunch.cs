@@ -8,6 +8,7 @@ public class BallLaunch : MonoBehaviour
     private float angleGateQuantity = 2;
     [SerializeField]
     private float StrikeForceHorizontal = 15.0f;
+    [SerializeField]
     private float StrikeForceVertical = 0.2f;
 
 
