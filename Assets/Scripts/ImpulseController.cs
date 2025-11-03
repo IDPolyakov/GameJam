@@ -15,6 +15,17 @@ public class ImpulseController : MonoBehaviour
     [SerializeField] private SpawnEvents eventSpawner;
     [SerializeField] private HitBall hitBall;
 
+
+    [Header("Sound Settings")]
+    [SerializeField] private AudioClip crowdCheerSound;
+    [SerializeField] private AudioClip crowdDisappointSound;
+    [SerializeField] private AudioClip windSound;
+    [SerializeField] private AudioClip crowdAmbientSound;
+    private AudioSource audioSource;
+    private AudioSource windAudioSource;  // Отдельный AudioSource для ветра
+    private AudioSource crowdAmbientSource;
+
+
     [Header("Stop checker")]
     [SerializeField] private float VelocityStopThreshold = 0.05f; // Amount of speed, below which real speed is considered zero or negative
     [SerializeField] private float BackwardDuration = 3.0f; // Time of necessary backwards movement
@@ -30,9 +41,47 @@ public class ImpulseController : MonoBehaviour
         initialCords = transform.position;
         rb = GetComponent<Rigidbody>();
         launcher = GetComponent<BallLaunch>();
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        
+        windAudioSource = gameObject.AddComponent<AudioSource>();
+        SetupWindSound();
+
+        crowdAmbientSource = gameObject.AddComponent<AudioSource>();
+        SetupCrowdAmbientSound();
+
+
         if (hitBall == null)
         {
             hitBall = FindFirstObjectByType<HitBall>();
+        }
+    }
+    private void SetupWindSound()
+    {
+        if (windSound != null && windAudioSource != null)
+        {
+            windAudioSource.clip = windSound;
+            windAudioSource.loop = true; 
+            windAudioSource.volume = 0.3f; 
+            windAudioSource.playOnAwake = true;
+            windAudioSource.Play();
+        }
+    }
+
+    private void SetupCrowdAmbientSound()
+    {
+        if (crowdAmbientSound != null && crowdAmbientSource != null)
+        {
+            crowdAmbientSource.clip = crowdAmbientSound;
+            crowdAmbientSource.loop = true;
+            crowdAmbientSource.volume = 0.4f;
+            crowdAmbientSource.playOnAwake = true;
+            crowdAmbientSource.Play();
         }
     }
 
@@ -56,6 +105,7 @@ public class ImpulseController : MonoBehaviour
         {
 
             // ��������� ����
+            PlayCrowdCheer();
             linkToUIManager.UpdateScore();
             goalKeeper.IncreaseSpeed();
 
@@ -67,7 +117,20 @@ public class ImpulseController : MonoBehaviour
         }
     }
 
-
+    private void PlayCrowdCheer()
+    {
+        if (crowdCheerSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(crowdCheerSound);
+        }
+    }
+    private void PlayCrowdDisappoint()
+    {
+        if (crowdDisappointSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(crowdDisappointSound);
+        }
+    }
     private void checkForForwardMovement()
     {
         float currentZVelocity = rb.linearVelocity.z;
@@ -109,6 +172,7 @@ public class ImpulseController : MonoBehaviour
 
     private void OnGameOver()
     {
+        PlayCrowdDisappoint();
         launcher.resetForce();
         goalKeeper.ResetSpeed();
         linkToUIManager.ShowGameOver();

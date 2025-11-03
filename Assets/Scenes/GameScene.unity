@@ -978,6 +978,10 @@ MonoBehaviour:
   goalKeeper: {fileID: 1809975459}
   eventSpawner: {fileID: 266613975}
   hitBall: {fileID: 0}
+  crowdCheerSound: {fileID: 8300000, guid: 3ecc2004002f9d34dbd0ea37cfdc9e38, type: 3}
+  crowdDisappointSound: {fileID: 8300000, guid: 0687bf8258b670243aa69455c97f1683, type: 3}
+  windSound: {fileID: 8300000, guid: 84e6f3683ff469849beee8a567f631ec, type: 3}
+  crowdAmbientSound: {fileID: 8300000, guid: ff69c9e5baec23f4db9a772d68f90ce7, type: 3}
   VelocityStopThreshold: 0.05
   BackwardDuration: 3
 --- !u!114 &1281867587
@@ -996,6 +1000,9 @@ MonoBehaviour:
   InitialStrikeForceHorizontal: 15
   StrikeForceVertical: 0.2
   "StrikeForceHorizontal\u0421hange": 2
+  hitSounds:
+  - {fileID: 8300000, guid: 89973085d90417445a87013f5dfc5553, type: 3}
+  - {fileID: 8300000, guid: 26d36dbce091bd648871211c51d0a59e, type: 3}
 --- !u!1 &1282526309
 GameObject:
   m_ObjectHideFlags: 3
