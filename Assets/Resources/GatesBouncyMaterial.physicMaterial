@@ -11,5 +11,5 @@ PhysicsMaterial:
   m_DynamicFriction: 3.82
   m_StaticFriction: 4.79
   m_Bounciness: 0
-  m_FrictionCombine: 2
-  m_BounceCombine: 2
+  m_FrictionCombine: 0
+  m_BounceCombine: 0
