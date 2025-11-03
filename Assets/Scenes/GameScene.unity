@@ -435,6 +435,69 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1001 &349026744
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: a18d96cc69d803a4ca72d3f5314d9f65, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.8315666
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a18d96cc69d803a4ca72d3f5314d9f65, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a18d96cc69d803a4ca72d3f5314d9f65, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 91.01113
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a18d96cc69d803a4ca72d3f5314d9f65, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a18d96cc69d803a4ca72d3f5314d9f65, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a18d96cc69d803a4ca72d3f5314d9f65, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a18d96cc69d803a4ca72d3f5314d9f65, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a18d96cc69d803a4ca72d3f5314d9f65, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a18d96cc69d803a4ca72d3f5314d9f65, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a18d96cc69d803a4ca72d3f5314d9f65, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a18d96cc69d803a4ca72d3f5314d9f65, type: 3}
+      propertyPath: m_Name
+      value: Zombie_football_ANIMATE
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a18d96cc69d803a4ca72d3f5314d9f65, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1185514777}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a18d96cc69d803a4ca72d3f5314d9f65, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1185514778}
+  m_SourcePrefab: {fileID: 100100000, guid: a18d96cc69d803a4ca72d3f5314d9f65, type: 3}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,6 +765,47 @@ MonoBehaviour:
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
+--- !u!1 &1185514775 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a18d96cc69d803a4ca72d3f5314d9f65, type: 3}
+  m_PrefabInstance: {fileID: 349026744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1185514777
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185514775}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 85b175d2db6a4004eb6ea6d8b5f82554, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1185514778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185514775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a062c4f6268333d408f3ad5cf0510364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBall
+  animationDelay: 1
+  animator: {fileID: 1185514777}
 --- !u!1 &1281867579
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +977,7 @@ MonoBehaviour:
   linkToUIManager: {fileID: 832575520}
   goalKeeper: {fileID: 1809975459}
   eventSpawner: {fileID: 266613975}
+  hitBall: {fileID: 0}
   VelocityStopThreshold: 0.05
   BackwardDuration: 3
 --- !u!114 &1281867587
@@ -1223,7 +1328,7 @@ MonoBehaviour:
   moveSpeed: 8.65
   move: {fileID: 3593113831499764563, guid: 4e1eda9e458301c4caa4a17cff3974e8, type: 3}
   jump: {fileID: -1855390582384917725, guid: 4e1eda9e458301c4caa4a17cff3974e8, type: 3}
-  jumpForce: 7.33
+  jumpForce: 7
 --- !u!65 &1991421627
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2360,3 +2465,4 @@ SceneRoots:
   - {fileID: 1809975462}
   - {fileID: 1991421620}
   - {fileID: 266613974}
+  - {fileID: 349026744}

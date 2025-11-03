@@ -50,7 +50,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (jump.action.IsPressed() && transform.position.y < 0.1)
+        if (jump.action.IsPressed() && transform.position.y < 1.0f)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }

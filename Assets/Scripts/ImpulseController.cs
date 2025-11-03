@@ -13,6 +13,7 @@ public class ImpulseController : MonoBehaviour
     [Header("Links to send \"Restart\" message")]
     [SerializeField] private GoalKeeper goalKeeper;
     [SerializeField] private SpawnEvents eventSpawner;
+    [SerializeField] private HitBall hitBall;
 
     [Header("Stop checker")]
     [SerializeField] private float VelocityStopThreshold = 0.05f; // Amount of speed, below which real speed is considered zero or negative
@@ -29,6 +30,10 @@ public class ImpulseController : MonoBehaviour
         initialCords = transform.position;
         rb = GetComponent<Rigidbody>();
         launcher = GetComponent<BallLaunch>();
+        if (hitBall == null)
+        {
+            hitBall = FindFirstObjectByType<HitBall>();
+        }
     }
 
     private void Update()
@@ -93,6 +98,7 @@ public class ImpulseController : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         eventSpawner.respawnPrefabs();
+        hitBall.playAnimation();
     }
 
     private bool isRestarting = false;
