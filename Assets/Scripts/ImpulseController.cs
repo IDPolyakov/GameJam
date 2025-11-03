@@ -40,10 +40,7 @@ public class ImpulseController : MonoBehaviour
     {
         if (!isRestarting && (transform.position.z < -10 || transform.position.z > 90))
         {
-            goalKeeper.ResetSpeed();
-            linkToUIManager.ShowGameOver();
-            eventSpawner.resetAmount();
-            StartCoroutine(DelayedRestart(3.0f));  // �����������
+            OnGameOver();
         }
 
 
@@ -85,9 +82,7 @@ public class ImpulseController : MonoBehaviour
 
         if (!isRestarting && backwardTimer >= BackwardDuration)
         {
-            linkToUIManager.ShowGameOver();
-            eventSpawner.resetAmount();
-            StartCoroutine(DelayedRestart(3.0f));
+            OnGameOver();
         }
     }
 
@@ -110,6 +105,15 @@ public class ImpulseController : MonoBehaviour
         isRestarting = false;
         linkToUIManager.StartCountdown();
         StartCoroutine(launcher.DelayedLaunch());
+    }
+
+    private void OnGameOver()
+    {
+        launcher.resetForce();
+        goalKeeper.ResetSpeed();
+        linkToUIManager.ShowGameOver();
+        eventSpawner.resetAmount();
+        StartCoroutine(DelayedRestart(3.0f));
     }
 
     private void arrowMovement()

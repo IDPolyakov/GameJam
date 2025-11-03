@@ -46,7 +46,6 @@ public class SpawnEvents : MonoBehaviour
     {
         foreach (GameObject obj in spawnedObjects)
         {
-            Debug.Log(obj.name);
             Destroy(obj);
         }
         spawnedObjects.Clear();

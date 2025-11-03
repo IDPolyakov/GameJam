@@ -43,8 +43,6 @@ public class HitBall : MonoBehaviour
         yield return new WaitForSeconds(delay);
         if (animator != null)
         {
-            Debug.Log("Animation Played");
-
             animator.Play(animationName, -1, 0.0f);
 
             isAnimating = false;

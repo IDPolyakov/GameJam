@@ -11,15 +11,17 @@ public class SpiderMovement : MonoBehaviour
 
     private Rigidbody rb;
     private Vector3 startPosition;
+    private float rndOffset;
     void Start()
     {
+        rndOffset = Random.Range(10f,20f);
         startPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float offset = Mathf.PingPong(Time.time * moveSpeed, movementRange * 2) - movementRange;
+        float offset = Mathf.PingPong((Time.time + rndOffset) * moveSpeed, movementRange * 2) - movementRange;
         transform.position = new Vector3(startPosition.x + offset, startPosition.y, startPosition.z);
     }
 }

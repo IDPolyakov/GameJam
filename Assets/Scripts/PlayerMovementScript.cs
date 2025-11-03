@@ -34,8 +34,9 @@ public class PlayerMovementScript : MonoBehaviour
         Vector3 moveVector = new Vector3(-inputVector.x, 0f, inputVector.y);
         float moveDistance = Time.deltaTime * moveSpeed;
         RaycastHit hit;
-        float rayDistance = moveDistance + rendererLink.bounds.size.x / 2;
-        bool hitSomething = Physics.Raycast(transform.position, moveVector.normalized, out hit, rayDistance);
+        float rayOffset = moveDistance + rendererLink.bounds.size.x / 2;
+        float rayDistance = 1f;
+        bool hitSomething = Physics.Raycast(transform.position + moveVector.normalized * rayOffset, moveVector.normalized, out hit, rayDistance);
 
         if (!hitSomething || hit.collider.gameObject == this.gameObject)
         {
