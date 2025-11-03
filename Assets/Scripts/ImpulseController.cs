@@ -27,7 +27,7 @@ public class ImpulseController : MonoBehaviour
 
 
     [Header("Stop checker")]
-    [SerializeField] private float VelocityStopThreshold = 0.05f; // Amount of speed, below which real speed is considered zero or negative
+    [SerializeField] private float VelocityStopThreshold = -0.05f; // Amount of speed, below which real speed is considered zero or negative
     [SerializeField] private float BackwardDuration = 3.0f; // Time of necessary backwards movement
 
     private float backwardTimer = 0f;
@@ -67,7 +67,7 @@ public class ImpulseController : MonoBehaviour
         {
             windAudioSource.clip = windSound;
             windAudioSource.loop = true; 
-            windAudioSource.volume = 0.3f; 
+            windAudioSource.volume = 0.6f; 
             windAudioSource.playOnAwake = true;
             windAudioSource.Play();
         }
@@ -77,9 +77,9 @@ public class ImpulseController : MonoBehaviour
     {
         if (crowdAmbientSound != null && crowdAmbientSource != null)
         {
-            crowdAmbientSource.clip = crowdAmbientSound;
             crowdAmbientSource.loop = true;
-            crowdAmbientSource.volume = 0.4f;
+            crowdAmbientSource.volume = 0.8f;
+            crowdAmbientSource.clip = crowdAmbientSound;
             crowdAmbientSource.playOnAwake = true;
             crowdAmbientSource.Play();
         }
@@ -93,7 +93,7 @@ public class ImpulseController : MonoBehaviour
         }
 
 
-        arrowMovement();
+        //arrowMovement();
         checkForForwardMovement();
     }
 

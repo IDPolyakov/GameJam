@@ -28,17 +28,6 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "29ddb320-a62f-42f1-a8c9-cab9efc45a6b",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "990c291c-b4bc-4af3-8fec-6a6b5df724e3",
                     "path": "",
                     "interactions": "",
@@ -84,7 +73,7 @@
                 {
                     "name": "left",
                     "id": "29e306e6-1a97-49ae-9ad0-156d01e03d15",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -95,7 +84,7 @@
                 {
                     "name": "right",
                     "id": "0fbd51f1-7f0a-4dc9-a5b3-4c7017bbbdc1",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
