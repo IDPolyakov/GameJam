@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class ImpulseController : MonoBehaviour
 {
@@ -11,8 +10,9 @@ public class ImpulseController : MonoBehaviour
     [Header("UI")]
     [SerializeField] private UIManager linkToUIManager;
 
-    [Header("GoalKeeper")]
+    [Header("Links to send \"Restart\" message")]
     [SerializeField] private GoalKeeper goalKeeper;
+    [SerializeField] private SpawnEvents eventSpawner;
 
     [Header("Stop checker")]
     [SerializeField] private float VelocityStopThreshold = 0.05f; // Amount of speed, below which real speed is considered zero or negative
@@ -33,16 +33,12 @@ public class ImpulseController : MonoBehaviour
 
     private void Update()
     {
-        if ((!isRestarting && transform.position.z < -10) || (!isRestarting && transform.position.z > 90) )
+        if (!isRestarting && (transform.position.z < -10 || transform.position.z > 90))
         {
-            if (goalKeeper != null)
-            {
-                goalKeeper.ResetSpeed();
-            }
-
+            goalKeeper.ResetSpeed();
             linkToUIManager.ShowGameOver();
-            isRestarting = true;
-            StartCoroutine(DelayedRestart(3.0f));  // ÏÅÐÅÐÇÀÏÓÑÊ
+            eventSpawner.resetAmount();
+            StartCoroutine(DelayedRestart(3.0f));  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
 
 
@@ -50,25 +46,20 @@ public class ImpulseController : MonoBehaviour
         checkForForwardMovement();
     }
 
-    // Òððèããåð â âîðîòàõ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private void OnTriggerEnter(Collider other)
     {
-        
-        if (other.CompareTag("Goal"))
+
+        if (!isRestarting && other.CompareTag("Goal"))
         {
-            
-            // Äîáàâëÿåì î÷êî
+
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             linkToUIManager.UpdateScore();
+            goalKeeper.IncreaseSpeed();
 
-            if (goalKeeper != null)
-            {
-                goalKeeper.IncreaseSpeed();
-            }
-
-            // Ðåñòàðò
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (!isRestarting)
             {
-                isRestarting = true;
                 StartCoroutine(DelayedRestart(1.0f));
             }
         }
@@ -87,9 +78,10 @@ public class ImpulseController : MonoBehaviour
             backwardTimer = 0f;
         }
 
-        if (backwardTimer >= BackwardDuration)
+        if (!isRestarting && backwardTimer >= BackwardDuration)
         {
             linkToUIManager.ShowGameOver();
+            eventSpawner.resetAmount();
             StartCoroutine(DelayedRestart(3.0f));
         }
     }
@@ -100,6 +92,7 @@ public class ImpulseController : MonoBehaviour
         transform.rotation = new Quaternion();
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+        eventSpawner.respawnPrefabs();
     }
 
     private bool isRestarting = false;

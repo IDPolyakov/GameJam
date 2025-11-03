@@ -4,15 +4,15 @@ public class GoalKeeper : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 3f;
-    [SerializeField] private float movementRange = 3f; // по горизонтали X
-    [SerializeField] private float movementHeight = 0.5f; // по вертикали Y
+    [SerializeField] private float movementRange = 3f; // пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ X
+    [SerializeField] private float movementHeight = 0.5f; // пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Y
 
     [Header("Gate Settings")]
     [SerializeField] private Transform gate;
     [SerializeField] private Vector3 offsetFromGate = new Vector3(0, 0, -1f);
 
     [Header("Difficulty")]
-    [SerializeField] private float speedIncreasePerGoal = 0.5f; // На сколько увеличивать скорость за гол
+    [SerializeField] private float speedIncreasePerGoal = 0.5f; // пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ
     [SerializeField] private float maxSpeed = 8f;
 
     private float randomOffset;
@@ -28,7 +28,6 @@ public class GoalKeeper : MonoBehaviour
 
     void Update()
     {
-        Debug.Log($"Скорость вратаря: {currentSpeed}");
         FollowGateAndMoveSine();
     }
 
@@ -36,11 +35,11 @@ public class GoalKeeper : MonoBehaviour
     {
         if (gate == null) return;
 
-        
+
         Vector3 basePosition = gate.position + gate.TransformDirection(offsetFromGate);
 
-        // Бага: если есть скорость 11, наш текущий аргумент синуса будет x, если игрок в это же время или через 0.001 секунды попадает в ворота, скорость увеличивается, но
-        // аргумент изменяется не на 0.001 как должно быть, а на x + a, где a - какое-то большое число. Это из-за того, что скорость есть коэффициент.
+        // пїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 11, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ x, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 0.001 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ 0.001 пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅ x + a, пїЅпїЅпїЅ a - пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅ пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         float sineX = Mathf.Sin((Time.time + randomOffset) * currentSpeed) * movementRange;
         float sineZ = Mathf.Sin((Time.time + randomOffset) * currentSpeed * 1.5f) * movementHeight;
 
@@ -48,7 +47,7 @@ public class GoalKeeper : MonoBehaviour
 
         Vector3 worldMovement = gate.TransformDirection(localMovement);
 
-      
+
         Vector3 targetPosition = basePosition + worldMovement;
 
         transform.position = targetPosition;
@@ -59,16 +58,13 @@ public class GoalKeeper : MonoBehaviour
         if (currentSpeed < maxSpeed)
         {
             currentSpeed += speedIncreasePerGoal;
-            Debug.Log($"Скорость вратаря увеличена до: {currentSpeed}");
         }
         else
         {
-            Debug.Log("Достигнута максимальная скорость вратаря!");
         }
     }
     public void ResetSpeed()
     {
         currentSpeed = movementSpeed;
-        Debug.Log("Скорость вратаря сброшена");
     }
 }
