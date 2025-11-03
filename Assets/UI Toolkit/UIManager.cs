@@ -5,7 +5,9 @@ using System.Collections;
 public class UIManager : MonoBehaviour
 {
     private Label scoreLabel;
-    private Label gameOverText;
+    private VisualElement scoreView;
+    private VisualElement gameOverView;
+    private VisualElement countdownTimer;
     private Label countdownTimerLabel;
 
     [SerializeField]
@@ -17,13 +19,16 @@ public class UIManager : MonoBehaviour
     {
         var root = GetComponent<UIDocument>().rootVisualElement;
 
-        scoreLabel = root.Q<Label>("Score");
-        gameOverText = root.Q<Label>("GameOver");
-        countdownTimerLabel = root.Q<Label>("BeforeStartCounter");
+        scoreLabel = root.Q<Label>("ScoreText");
+        scoreView = root.Q<VisualElement>("Score");
+        countdownTimer = root.Q<VisualElement>("BeforeStartCounter");
+        countdownTimerLabel = root.Q<Label>("BeforeStartCounterText");
+        gameOverView = root.Q<VisualElement>("GameOver");
+        Debug.Log(gameOverView);
 
         UpdateScore(currentScore);
         HideGameOver();
-        countdownTimerLabel.style.display = DisplayStyle.None;
+        countdownTimer.style.display = DisplayStyle.None;
         StartCountdown();
     }
 
@@ -40,19 +45,18 @@ public class UIManager : MonoBehaviour
         UpdateScore(0);
     }
 
-    public void ShowGameOver(string finalMessage = "Вы проиграли!")
+    public void ShowGameOver()
     {
-        ResetScore(); // Сбрасываем счет
-        gameOverText.text = finalMessage;
-        gameOverText.style.display = DisplayStyle.Flex;
+        ResetScore();
+        gameOverView.style.display = DisplayStyle.Flex;
 
-        scoreLabel.style.display = DisplayStyle.None;
+        scoreView.style.display = DisplayStyle.None;
     }
 
     private void HideGameOver()
     {
-        gameOverText.style.display = DisplayStyle.None;
-        scoreLabel.style.display = DisplayStyle.Flex;
+        gameOverView.style.display = DisplayStyle.None;
+        scoreView.style.display = DisplayStyle.Flex;
     }
 
     public void StartCountdown()
@@ -64,7 +68,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator CountdownSequence(int startValue)
     {
-        countdownTimerLabel.style.display = DisplayStyle.Flex;
+        countdownTimer.style.display = DisplayStyle.Flex;
 
         for (int i = startValue; i > 0; i--)
         {
@@ -76,7 +80,7 @@ public class UIManager : MonoBehaviour
         countdownTimerLabel.text = "GO!";
         yield return new WaitForSeconds(0.5f);
 
-        countdownTimerLabel.style.display = DisplayStyle.None;
+        countdownTimer.style.display = DisplayStyle.None;
     }
 
     void Update()
@@ -89,7 +93,7 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-            ShowGameOver("Вы набрали " + currentScore + " очков!");
+            ShowGameOver();
         }
 
         if (Input.GetKeyDown(KeyCode.C))

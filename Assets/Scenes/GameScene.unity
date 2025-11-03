@@ -168,8 +168,8 @@ MonoBehaviour:
   - {fileID: 8380423358680985470, guid: 20e77e8bad680d14a9a639f8b8ca6773, type: 3}
   - {fileID: 8167442226219836511, guid: ba297a9b48fd14548bfa4f29f21aeae6, type: 3}
   - {fileID: 1093919026714333642, guid: ebb573d9f545c7e42a8814673b560cc6, type: 3}
-  initialSpawnCount: 2
-  spawnCountChange: 1
+  initialSpawnCount: 4
+  spawnCountChange: 2
 --- !u!65 &266613976
 BoxCollider:
   m_ObjectHideFlags: 0
